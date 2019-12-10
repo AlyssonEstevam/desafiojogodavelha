@@ -1,0 +1,151 @@
+.container {
+    display: grid;
+    width: 98vw;
+    height: 97vh;
+    grid-template-columns: 3fr 2fr 3fr;
+    grid-template-rows: 1fr 3fr 3fr;
+    grid-template-areas: ". titulo ." ". jogo ." ". dificuldade .";
+}
+
+.divTitulo {
+    display: grid;
+    grid-area: titulo;
+    background: #FFFFFF;
+    align-content: center;
+    justify-content: center;
+}
+
+.titulo {
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.divJogo {
+    display: grid;
+    grid-area: jogo;
+    background: #FFFFFF;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "q1 q2 q3" "q4 q5 q6" "q7 q8 q9";
+}
+
+.divJogo div {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.divJogo div span {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.divQ1 {
+    grid-area: q1;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-color: black;
+    background: #FFFFFF;
+}
+
+.divQ2 {
+    grid-area: q2;
+    border-bottom-style: solid;
+    border-color: black;
+}
+
+.divQ3 {
+    grid-area: q3;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: black;
+}
+
+.divQ4 {
+    grid-area: q4;
+    border-bottom-style: solid;
+    border-right-style: solid;
+    border-color: black;
+}
+
+.divQ5 {
+    grid-area: q5;
+    border-bottom-style: solid;
+    border-color: black;
+}
+
+.divQ6 {
+    grid-area: q6;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: black;
+}
+
+.divQ7 {
+    grid-area: q7;
+    border-right-style: solid;
+}
+
+.divQ8 {
+    grid-area: q8;
+}
+
+.divQ9 {
+    grid-area: q9;
+    border-left-style: solid;
+}
+
+.divDificuldade {
+    display: grid;
+    grid-area: dificuldade;
+    background: #FFFFFF;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "tituloDificuldade" "facil" "medio" "dificil";
+    justify-items: center;
+}
+
+.divTituloDificuldade {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-area: tituloDificuldade;
+}
+
+.tituloDificuldade {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.divFacil,
+.divMedia,
+.divDificil {
+    width: 50%;
+    height: 75%;
+    background: #FFFFFF;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.divFacil {
+    grid-area: facil;
+}
+
+.divMedio {
+    grid-area: medio;
+}
+
+.divDificil {
+    grid-area: dificil;
+}
+
+.tituloBotao {
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+}
