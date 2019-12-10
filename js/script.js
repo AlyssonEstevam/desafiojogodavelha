@@ -43,29 +43,14 @@ O parâmetro passado informa qual quadrado foi selecionado para ser modificado.
 function jogada(quadrado) {
     if (tipoSimbolo == -1) {
         alert("SELECIONE UMA DIFICULDADE");
+    } else if (dificuldade == 0) {
+        realizaJogada(quadrado);
     } else {
-        var idDiv = "q" + quadrado;
-        var elementoQuadrado = document.getElementById(idDiv);
-
-        //Se o quadrado estiver disponível, seleciona o símbolo adequado e o coloca no espaço clicado.
-        if (!(elementoQuadrado.innerHTML == "x" || elementoQuadrado.innerHTML == "o")) {
-            var simbolo;
-            if (tipoSimbolo == 0) {
-                simbolo = "x";
-                tipoSimbolo = 1;
-            } else if (tipoSimbolo == 1) {
-                simbolo = "o";
-                tipoSimbolo = 0;
-            }
-
-            elementoQuadrado.innerHTML = simbolo;
-
-            var resultado = verificaVencedor();
-            colorirTabuleiro(resultado);
+        realizaJogada(quadrado);
+        if (tipoSimbolo != -1) {
+            jogadaBot();
         }
     }
-
-
 }
 
 /*
@@ -285,4 +270,50 @@ function colorirTabuleiro(resultado) {
             document.getElementById("titulo").innerHTML = "# JOGO DA VELHA #";
             break;
     }
+}
+
+function realizaJogada(quadrado) {
+    var idDiv = "q" + quadrado;
+    var elementoQuadrado = document.getElementById(idDiv);
+
+    //Se o quadrado estiver disponível, seleciona o símbolo adequado e o coloca no espaço clicado.
+    if (!(elementoQuadrado.innerHTML == "x" || elementoQuadrado.innerHTML == "o")) {
+        var simbolo;
+        if (tipoSimbolo == 0) {
+            simbolo = "x";
+            tipoSimbolo = 1;
+        } else if (tipoSimbolo == 1) {
+            simbolo = "o";
+            tipoSimbolo = 0;
+        }
+
+        elementoQuadrado.innerHTML = simbolo;
+
+        var resultado = verificaVencedor();
+        colorirTabuleiro(resultado);
+    }
+}
+
+function jogadaBot() {
+    if (dificuldade == 1) {
+        var i;
+        for (i = 1; i <= 9; i++) {
+            if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
+                var simbolo;
+                if (tipoSimbolo == 0) {
+                    simbolo = "x";
+                    tipoSimbolo = 1;
+                } else if (tipoSimbolo == 1) {
+                    simbolo = "o";
+                    tipoSimbolo = 0;
+                }
+
+                document.getElementById("q" + i).innerHTML = simbolo;
+                break;
+            }
+        }
+    }
+
+    var resultado = verificaVencedor();
+    colorirTabuleiro(resultado);
 }
