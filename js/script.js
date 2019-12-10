@@ -1,6 +1,6 @@
 //Variável que define se o simbolo a se colocar será 'X' ou 'O'.
-var tipoSimbolo = -1;
-var dificuldade = -1;
+var tipoSimbolo = 0;
+var dificuldade = 0;
 
 /*
 Função chamada pelos botões de escolha de dificuldade
@@ -27,6 +27,8 @@ function escolhaDificuldade(valorDificuldade) {
     //Variável que define se o simbolo a se colocar será 'X' ou 'O'.
     tipoSimbolo = 0;
 
+    colorirTabuleiro(10);
+
     var i;
     for (i = 1; i <= 9; i++) {
         document.getElementById("q" + i).innerHTML = "";
@@ -42,12 +44,12 @@ function jogada(quadrado) {
     if (tipoSimbolo == -1) {
         alert("SELECIONE UMA DIFICULDADE");
     } else {
-        let idDiv = "q" + quadrado;
+        var idDiv = "q" + quadrado;
         var elementoQuadrado = document.getElementById(idDiv);
 
-        //Se o quadrado estiver disponível, selecioa o símbolo adequado e o coloca no espaço clicado.
+        //Se o quadrado estiver disponível, seleciona o símbolo adequado e o coloca no espaço clicado.
         if (!(elementoQuadrado.innerHTML == "x" || elementoQuadrado.innerHTML == "o")) {
-            let simbolo = "";
+            var simbolo;
             if (tipoSimbolo == 0) {
                 simbolo = "x";
                 tipoSimbolo = 1;
@@ -58,7 +60,8 @@ function jogada(quadrado) {
 
             elementoQuadrado.innerHTML = simbolo;
 
-            colorirTabuleiro(verificaVencedor());
+            var resultado = verificaVencedor();
+            colorirTabuleiro(resultado);
         }
     }
 
@@ -183,5 +186,103 @@ function verificaVencedor() {
         return 0;
     } else {
         return resultado;
+    }
+}
+
+function colorirTabuleiro(resultado) {
+    switch (resultado) {
+        case 0:
+            break;
+        case 1:
+            tipoSimbolo = -1;
+            document.getElementById("divQ1").style.background = "green";
+            document.getElementById("divQ2").style.background = "green";
+            document.getElementById("divQ3").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ1").innerHTML + " VENCEU";
+            break;
+        case 2:
+            tipoSimbolo = -1;
+            document.getElementById("divQ4").style.background = "green";
+            document.getElementById("divQ5").style.background = "green";
+            document.getElementById("divQ6").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ4").innerHTML + " VENCEU";
+            break;
+        case 3:
+            tipoSimbolo = -1;
+            document.getElementById("divQ7").style.background = "green";
+            document.getElementById("divQ8").style.background = "green";
+            document.getElementById("divQ9").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ7").innerHTML + " VENCEU";
+            break;
+        case 4:
+            tipoSimbolo = -1;
+            document.getElementById("divQ1").style.background = "green";
+            document.getElementById("divQ4").style.background = "green";
+            document.getElementById("divQ7").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ1").innerHTML + " VENCEU";
+            break;
+        case 5:
+            tipoSimbolo = -1;
+            document.getElementById("divQ2").style.background = "green";
+            document.getElementById("divQ5").style.background = "green";
+            document.getElementById("divQ8").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ2").innerHTML + " VENCEU";
+            break;
+        case 6:
+            tipoSimbolo = -1;
+            document.getElementById("divQ3").style.background = "green";
+            document.getElementById("divQ6").style.background = "green";
+            document.getElementById("divQ9").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ3").innerHTML + " VENCEU";
+            break;
+        case 7:
+            tipoSimbolo = -1;
+            document.getElementById("divQ1").style.background = "green";
+            document.getElementById("divQ5").style.background = "green";
+            document.getElementById("divQ9").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ1").innerHTML + " VENCEU";
+            break;
+        case 8:
+            tipoSimbolo = -1;
+            document.getElementById("divQ3").style.background = "green";
+            document.getElementById("divQ5").style.background = "green";
+            document.getElementById("divQ7").style.background = "green";
+            document.getElementById("titulo").style.color = "green";
+            document.getElementById("titulo").innerHTML = "JOGADOR " + document.getElementById("divQ3").innerHTML + " VENCEU";
+            break;
+        case 9:
+            tipoSimbolo = -1;
+            document.getElementById("divQ1").style.background = "red";
+            document.getElementById("divQ2").style.background = "red";
+            document.getElementById("divQ3").style.background = "red";
+            document.getElementById("divQ4").style.background = "red";
+            document.getElementById("divQ5").style.background = "red";
+            document.getElementById("divQ6").style.background = "red";
+            document.getElementById("divQ7").style.background = "red";
+            document.getElementById("divQ8").style.background = "red";
+            document.getElementById("divQ9").style.background = "red";
+            document.getElementById("titulo").style.color = "red";
+            document.getElementById("titulo").innerHTML = "DEU VELHA";
+            break;
+        case 10:
+            document.getElementById("divQ1").style.background = "white";
+            document.getElementById("divQ2").style.background = "white";
+            document.getElementById("divQ3").style.background = "white";
+            document.getElementById("divQ4").style.background = "white";
+            document.getElementById("divQ5").style.background = "white";
+            document.getElementById("divQ6").style.background = "white";
+            document.getElementById("divQ7").style.background = "white";
+            document.getElementById("divQ8").style.background = "white";
+            document.getElementById("divQ9").style.background = "white";
+            document.getElementById("titulo").style.color = "black";
+            document.getElementById("titulo").innerHTML = "# JOGO DA VELHA #";
+            break;
     }
 }

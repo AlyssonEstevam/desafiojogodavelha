@@ -54,6 +54,7 @@
     grid-area: q2;
     border-bottom-style: solid;
     border-color: black;
+    background: #FFFFFF;
 }
 
 .divQ3 {
@@ -61,6 +62,7 @@
     border-bottom-style: solid;
     border-left-style: solid;
     border-color: black;
+    background: #FFFFFF;
 }
 
 .divQ4 {
@@ -68,12 +70,14 @@
     border-bottom-style: solid;
     border-right-style: solid;
     border-color: black;
+    background: #FFFFFF;
 }
 
 .divQ5 {
     grid-area: q5;
     border-bottom-style: solid;
     border-color: black;
+    background: #FFFFFF;
 }
 
 .divQ6 {
@@ -81,20 +85,24 @@
     border-bottom-style: solid;
     border-left-style: solid;
     border-color: black;
+    background: #FFFFFF;
 }
 
 .divQ7 {
     grid-area: q7;
     border-right-style: solid;
+    background: #FFFFFF;
 }
 
 .divQ8 {
     grid-area: q8;
+    background: #FFFFFF;
 }
 
 .divQ9 {
     grid-area: q9;
     border-left-style: solid;
+    background: #FFFFFF;
 }
 
 .divDificuldade {
