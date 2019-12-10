@@ -101,8 +101,8 @@
     display: grid;
     grid-area: dificuldade;
     background: #FFFFFF;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-areas: "tituloDificuldade" "facil" "medio" "dificil";
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: "tituloDificuldade" "facil" "medio" "dificil" "doisJogadores";
     justify-items: center;
 }
 
@@ -121,7 +121,8 @@
 
 .divFacil,
 .divMedia,
-.divDificil {
+.divDificil,
+.divDoisJogadores {
     width: 50%;
     height: 75%;
     background: #FFFFFF;
@@ -142,6 +143,10 @@
 
 .divDificil {
     grid-area: dificil;
+}
+
+.div2Jogadores {
+    grid-area: doisJogadores;
 }
 
 .tituloBotao {
