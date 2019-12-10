@@ -41,13 +41,15 @@ símbolo correspondente ao jogador e chama a função de verificação de térmi
 O parâmetro passado informa qual quadrado foi selecionado para ser modificado.
 */
 function jogada(quadrado) {
+    var flag = 1;
+
     if (tipoSimbolo == -1) {
         alert("SELECIONE UMA DIFICULDADE");
     } else if (dificuldade == 0) {
-        realizaJogada(quadrado);
+        flag = realizaJogada(quadrado);
     } else {
-        realizaJogada(quadrado);
-        if (tipoSimbolo != -1) {
+        flag = realizaJogada(quadrado);
+        if (tipoSimbolo != -1 && flag == 1) {
             jogadaBot();
         }
     }
@@ -72,7 +74,6 @@ function verificaVencedor() {
     var q = new Array(10);
 
     var i;
-    var mensagem = "";
     for (i = 1; i <= 9; i++) {
         q[i] = document.getElementById("q" + i).innerHTML;
     }
@@ -291,6 +292,10 @@ function realizaJogada(quadrado) {
 
         var resultado = verificaVencedor();
         colorirTabuleiro(resultado);
+
+        return 1;
+    } else {
+        return 0;
     }
 }
 
@@ -312,8 +317,63 @@ function jogadaBot() {
                 break;
             }
         }
+    } else if (dificuldade == 2) {
+        if (!verificaCondicaoDeVitoria()) {
+            var i;
+            for (i = 1; i <= 9; i++) {
+                if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
+                    var simbolo;
+                    if (tipoSimbolo == 0) {
+                        simbolo = "x";
+                        tipoSimbolo = 1;
+                    } else if (tipoSimbolo == 1) {
+                        simbolo = "o";
+                        tipoSimbolo = 0;
+                    }
+
+                    document.getElementById("q" + i).innerHTML = simbolo;
+                    break;
+                }
+            }
+        }
     }
 
     var resultado = verificaVencedor();
     colorirTabuleiro(resultado);
+}
+
+function verificaCondicaoDeVitoria() {
+    var q = new Array(10);
+
+    var i;
+    for (i = 1; i <= 9; i++) {
+        q[i] = document.getElementById("q" + i).innerHTML;
+    }
+
+    var idDiv;
+    if (((q[2] == q[3] && q[2] == "x") || (q[4] == q[7] && q[4] == "x") || (q[5] == q[9] && q[5] == "x")) && !(q[1] == "o" || q[1] == "x")) {
+        idDiv = "q1";
+    } else if (((q[5] == q[8] && q[5] == "x") || (q[1] == q[3] && q[1] == "x")) && !(q[2] == "o" || q[2] == "x")) {
+        idDiv = "q2";
+    } else if (((q[1] == q[2] && q[1] == "x") || (q[5] == q[7] && q[5] == "x") || (q[6] == q[9] && q[6] == "x")) && !(q[3] == "o" || q[3] == "x")) {
+        idDiv = "q3";
+    } else if (((q[1] == q[7] && q[1] == "x") || (q[5] == q[6] && q[5] == "x")) && !(q[4] == "o" || q[4] == "x")) {
+        idDiv = "q4";
+    } else if (((q[1] == q[9] && q[1] == "x") || (q[2] == q[8] && q[2] == "x") || (q[3] == q[7] && q[3] == "x") || (q[4] == q[6] && q[4] == "x")) && !(q[5] == "o" || q[5] == "x")) {
+        idDiv = "q5";
+    } else if (((q[3] == q[9] && q[3] == "x") || (q[4] == q[5] && q[4] == "x")) && !(q[6] == "o" || q[6] == "x")) {
+        idDiv = "q6";
+    } else if (((q[3] == q[5] && q[3] == "x") || (q[1] == q[4] && q[1] == "x") || (q[8] == q[9] && q[8] == "x")) && !(q[7] == "o" || q[7] == "x")) {
+        idDiv = "q7";
+    } else if (((q[7] == q[9] && q[7] == "x") || (q[2] == q[5] && q[2] == "x")) && !(q[8] == "o" || q[8] == "x")) {
+        idDiv = "q8";
+    } else if (((q[3] == q[6] && q[3] == "x") || (q[1] == q[5] && q[1] == "x") || (q[7] == q[8] && q[7] == "x")) && !(q[9] == "o" || q[9] == "x")) {
+        idDiv = "q9";
+    } else {
+        return 0;
+    }
+
+    document.getElementById(idDiv).innerHTML = "o";
+    tipoSimbolo = 0;
+    return 1;
 }
