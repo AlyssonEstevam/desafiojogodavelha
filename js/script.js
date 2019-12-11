@@ -371,32 +371,20 @@ function jogadaBot(quadrado) {
                         document.getElementById("q2").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[6] == "x" && q[8] == "x" && q[5] == "o")) {
+                    } else if ((q[6] == "x" && q[8] == "x" && q[5] == "o") || (q[1] == "x" && q[6] == "x" && q[5] == "o")) {
                         document.getElementById("q9").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[4] == "x" && q[8] == "x" && q[5] == "o")) {
+                    } else if ((q[4] == "x" && q[8] == "x" && q[5] == "o") || (q[3] == "x" && q[4] == "x" && q[5] == "o")) {
                         document.getElementById("q7").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[2] == "x" && q[6] == "x" && q[5] == "o")) {
+                    } else if ((q[2] == "x" && q[6] == "x" && q[5] == "o") || (q[7] == "x" && q[6] == "x" && q[5] == "o") || (q[1] == "o" && q[5] == "x" && q[9] == "x")) {
                         document.getElementById("q3").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[2] == "x" && q[4] == "x" && q[5] == "o")) {
+                    } else if ((q[2] == "x" && q[4] == "x" && q[5] == "o") || (q[9] == "x" && q[4] == "x" && q[5] == "o")) {
                         document.getElementById("q1").innerHTML = "o";
-                        tipoSimbolo = 0;
-                        numeroJogada++;
-                    } else if ((q[1] == "x" && q[6] == "x" && q[5] == "o") || (q[3] == "x" && q[4] == "x" && q[5] == "o")) {
-                        document.getElementById("q2").innerHTML = "o";
-                        tipoSimbolo = 0;
-                        numeroJogada++;
-                    } else if ((q[7] == "x" && q[6] == "x" && q[5] == "o") || (q[9] == "x" && q[4] == "x" && q[5] == "o")) {
-                        document.getElementById("q8").innerHTML = "o";
-                        tipoSimbolo = 0;
-                        numeroJogada++;
-                    } else if ((q[1] == "o" && q[5] == "x" && q[9] == "x")) {
-                        document.getElementById("q3").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
                     } else {
@@ -418,19 +406,19 @@ function jogadaBot(quadrado) {
                         q[i] = document.getElementById("q" + i).innerHTML;
                     }
 
-                    if ((q[1] == "x" && q[5] == "o" && q[6] == "x" && q[8] == "x" && q[9] == "o")) {
+                    if ((q[1] == "x" && q[5] == "o" && q[6] == "x" && q[8] == "x" && q[9] == "o") && !(q[3] == "x" || q[3] == "o")) {
                         document.getElementById("q3").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[3] == "x" && q[5] == "o" && q[4] == "x" && q[8] == "x" && q[7] == "o")) {
+                    } else if ((q[3] == "x" && q[5] == "o" && q[4] == "x" && q[8] == "x" && q[7] == "o") && !(q[1] == "x" || q[1] == "o")) {
                         document.getElementById("q1").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[2] == "x" && q[5] == "o" && q[6] == "x" && q[7] == "x" && q[3] == "o")) {
+                    } else if ((q[2] == "x" && q[5] == "o" && q[6] == "x" && q[7] == "x" && q[3] == "o") && !(q[9] == "x" || q[9] == "o")) {
                         document.getElementById("q9").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
-                    } else if ((q[2] == "x" && q[5] == "o" && q[4] == "x" && q[9] == "x" && q[1] == "o")) {
+                    } else if ((q[2] == "x" && q[5] == "o" && q[4] == "x" && q[9] == "x" && q[1] == "o") && !(q[7] == "x" || q[7] == "o")) {
                         document.getElementById("q7").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
