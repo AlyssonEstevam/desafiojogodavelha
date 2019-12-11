@@ -177,6 +177,11 @@ function verificaVencedor() {
     }
 }
 
+/*
+Função utilizada cara colorir de verde a linha, coluna ou diagonal vencedora. Usada também para colorir 
+de vermelho o tabuleiro em caso de velha, e também para limpar o tabuleiro no RESET do jogo.
+O parâmetro passado é o resultado do jogo de acordo com a função verificaVencedor().
+*/
 function colorirTabuleiro(resultado) {
     switch (resultado) {
         case 0:
@@ -275,6 +280,8 @@ function colorirTabuleiro(resultado) {
     }
 }
 
+
+//Função usada para realizar a jogada do jogador ou jogadores humanos
 function realizaJogada(quadrado) {
     var idDiv = "q" + quadrado;
     var elementoQuadrado = document.getElementById(idDiv);
@@ -301,7 +308,9 @@ function realizaJogada(quadrado) {
     }
 }
 
+//Função usada para realizar a jogada do bot, dependendo que qual dificuldade está sendo jogada.
 function jogadaBot(quadrado) {
+    //Dificuldade fácil, o bot joga no próximo quadrado disponível
     if (dificuldade == 1) {
         var i;
         for (i = 1; i <= 9; i++) {
@@ -311,6 +320,10 @@ function jogadaBot(quadrado) {
                 break;
             }
         }
+        /*
+        Dificuldade média, o bot verifica se o jogador possui chances de ganhar e não deixa, porém pode perder
+        caso o jogador possua duas chances de vitória.
+        */
     } else if (dificuldade == 2) {
         if (!verificaCondicaoDeVitoria()) {
             var i;
@@ -322,6 +335,11 @@ function jogadaBot(quadrado) {
                 }
             }
         }
+        /*
+        Dificuldade difícil, ou melhor impossível, é realizada uma verificação do tabuleiro a cada jogada
+        realizada, até a terceira jogada em alguns casos, tornando impossível a vitória do jogador
+        terminando em velha ou vitória do bot.
+        */
     } else if (dificuldade == 3) {
         if (!verificaJogadaVencedora()) {
             if (!verificaCondicaoDeVitoria()) {
@@ -445,6 +463,7 @@ function jogadaBot(quadrado) {
     colorirTabuleiro(resultado);
 }
 
+//Função usada para verificar se o jogador pode vencer, bloqueando-o para impedir a vitória.
 function verificaCondicaoDeVitoria() {
     var q = new Array(10);
 
@@ -481,6 +500,7 @@ function verificaCondicaoDeVitoria() {
     return 1;
 }
 
+//Função que verifica se o bot possui uma jogada vencedora, efetuando-a para garantir a vitória.
 function verificaJogadaVencedora() {
     var q = new Array(10);
 
