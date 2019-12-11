@@ -1,6 +1,7 @@
 //Variável que define se o simbolo a se colocar será 'X' ou 'O'.
 var tipoSimbolo = 0;
 var dificuldade = 0;
+var numeroJogada = 1;
 
 /*
 Função chamada pelos botões de escolha de dificuldade
@@ -26,6 +27,7 @@ function escolhaDificuldade(valorDificuldade) {
 
     //Variável que define se o simbolo a se colocar será 'X' ou 'O'.
     tipoSimbolo = 0;
+    numeroJogada = 1;
 
     colorirTabuleiro(10);
 
@@ -50,7 +52,7 @@ function jogada(quadrado) {
     } else {
         flag = realizaJogada(quadrado);
         if (tipoSimbolo != -1 && flag == 1) {
-            jogadaBot();
+            jogadaBot(quadrado);
         }
     }
 }
@@ -299,21 +301,13 @@ function realizaJogada(quadrado) {
     }
 }
 
-function jogadaBot() {
+function jogadaBot(quadrado) {
     if (dificuldade == 1) {
         var i;
         for (i = 1; i <= 9; i++) {
             if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
-                var simbolo;
-                if (tipoSimbolo == 0) {
-                    simbolo = "x";
-                    tipoSimbolo = 1;
-                } else if (tipoSimbolo == 1) {
-                    simbolo = "o";
-                    tipoSimbolo = 0;
-                }
-
-                document.getElementById("q" + i).innerHTML = simbolo;
+                document.getElementById("q" + i).innerHTML = "o";
+                tipoSimbolo = 0;
                 break;
             }
         }
@@ -322,17 +316,122 @@ function jogadaBot() {
             var i;
             for (i = 1; i <= 9; i++) {
                 if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
-                    var simbolo;
-                    if (tipoSimbolo == 0) {
-                        simbolo = "x";
-                        tipoSimbolo = 1;
-                    } else if (tipoSimbolo == 1) {
-                        simbolo = "o";
+                    document.getElementById("q" + i).innerHTML = "o";
+                    tipoSimbolo = 0;
+                    break;
+                }
+            }
+        }
+    } else if (dificuldade == 3) {
+        if (!verificaJogadaVencedora()) {
+            if (!verificaCondicaoDeVitoria()) {
+                if (numeroJogada == 1) {
+                    if (quadrado == 5) {
+                        var i;
+                        for (i = 1; i <= 9; i++) {
+                            if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
+                                document.getElementById("q" + i).innerHTML = "o";
+                                tipoSimbolo = 0;
+                                numeroJogada++;
+                                break;
+                            }
+                        }
+                    } else {
+                        document.getElementById("q5").innerHTML = "o";
                         tipoSimbolo = 0;
+                        numeroJogada++;
+                    }
+                } else if (numeroJogada == 2) {
+                    var q = new Array(10);
+
+                    var i;
+                    for (i = 1; i <= 9; i++) {
+                        q[i] = document.getElementById("q" + i).innerHTML;
                     }
 
-                    document.getElementById("q" + i).innerHTML = simbolo;
-                    break;
+                    if ((q[1] == "x" && q[5] == "o" && q[9] == "x") || (q[3] == "x" && q[5] == "o" && q[7] == "x")) {
+                        document.getElementById("q2").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[6] == "x" && q[8] == "x" && q[5] == "o")) {
+                        document.getElementById("q9").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[4] == "x" && q[8] == "x" && q[5] == "o")) {
+                        document.getElementById("q7").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[2] == "x" && q[6] == "x" && q[5] == "o")) {
+                        document.getElementById("q3").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[2] == "x" && q[4] == "x" && q[5] == "o")) {
+                        document.getElementById("q1").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[1] == "x" && q[6] == "x" && q[5] == "o") || (q[3] == "x" && q[4] == "x" && q[5] == "o")) {
+                        document.getElementById("q2").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[7] == "x" && q[6] == "x" && q[5] == "o") || (q[9] == "x" && q[4] == "x" && q[5] == "o")) {
+                        document.getElementById("q8").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else {
+                        var i;
+                        for (i = 1; i <= 9; i++) {
+                            if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
+                                document.getElementById("q" + i).innerHTML = "o";
+                                tipoSimbolo = 0;
+                                numeroJogada++;
+                                break;
+                            }
+                        }
+                    }
+                } else if (numeroJogada == 3) {
+                    var q = new Array(10);
+
+                    var i;
+                    for (i = 1; i <= 9; i++) {
+                        q[i] = document.getElementById("q" + i).innerHTML;
+                    }
+
+                    if ((q[1] == "x" && q[5] == "o" && q[6] == "x" && q[8] == "x" && q[9] == "o")) {
+                        document.getElementById("q3").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[3] == "x" && q[5] == "o" && q[4] == "x" && q[8] == "x" && q[7] == "o")) {
+                        document.getElementById("q1").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[2] == "x" && q[5] == "o" && q[6] == "x" && q[7] == "x" && q[3] == "o")) {
+                        document.getElementById("q9").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else if ((q[2] == "x" && q[5] == "o" && q[4] == "x" && q[9] == "x" && q[1] == "o")) {
+                        document.getElementById("q7").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
+                    } else {
+                        var i;
+                        for (i = 1; i <= 9; i++) {
+                            if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
+                                document.getElementById("q" + i).innerHTML = "o";
+                                tipoSimbolo = 0;
+                                numeroJogada++;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    var i;
+                    for (i = 1; i <= 9; i++) {
+                        if (!(document.getElementById("q" + i).innerHTML == "x" || document.getElementById("q" + i).innerHTML == "o")) {
+                            document.getElementById("q" + i).innerHTML = "o";
+                            tipoSimbolo = 0;
+                            break;
+                        }
+                    }
                 }
             }
         }
@@ -368,6 +467,42 @@ function verificaCondicaoDeVitoria() {
     } else if (((q[7] == q[9] && q[7] == "x") || (q[2] == q[5] && q[2] == "x")) && !(q[8] == "o" || q[8] == "x")) {
         idDiv = "q8";
     } else if (((q[3] == q[6] && q[3] == "x") || (q[1] == q[5] && q[1] == "x") || (q[7] == q[8] && q[7] == "x")) && !(q[9] == "o" || q[9] == "x")) {
+        idDiv = "q9";
+    } else {
+        return 0;
+    }
+
+    document.getElementById(idDiv).innerHTML = "o";
+    tipoSimbolo = 0;
+    return 1;
+}
+
+function verificaJogadaVencedora() {
+    var q = new Array(10);
+
+    var i;
+    for (i = 1; i <= 9; i++) {
+        q[i] = document.getElementById("q" + i).innerHTML;
+    }
+
+    var idDiv;
+    if (((q[2] == q[3] && q[2] == "o") || (q[4] == q[7] && q[4] == "o") || (q[5] == q[9] && q[5] == "o")) && !(q[1] == "o" || q[1] == "x")) {
+        idDiv = "q1";
+    } else if (((q[5] == q[8] && q[5] == "o") || (q[1] == q[3] && q[1] == "o")) && !(q[2] == "o" || q[2] == "x")) {
+        idDiv = "q2";
+    } else if (((q[1] == q[2] && q[1] == "o") || (q[5] == q[7] && q[5] == "o") || (q[6] == q[9] && q[6] == "o")) && !(q[3] == "o" || q[3] == "x")) {
+        idDiv = "q3";
+    } else if (((q[1] == q[7] && q[1] == "o") || (q[5] == q[6] && q[5] == "o")) && !(q[4] == "o" || q[4] == "x")) {
+        idDiv = "q4";
+    } else if (((q[1] == q[9] && q[1] == "o") || (q[2] == q[8] && q[2] == "o") || (q[3] == q[7] && q[3] == "o") || (q[4] == q[6] && q[4] == "o")) && !(q[5] == "o" || q[5] == "x")) {
+        idDiv = "q5";
+    } else if (((q[3] == q[9] && q[3] == "o") || (q[4] == q[5] && q[4] == "o")) && !(q[6] == "o" || q[6] == "x")) {
+        idDiv = "q6";
+    } else if (((q[3] == q[5] && q[3] == "o") || (q[1] == q[4] && q[1] == "o") || (q[8] == q[9] && q[8] == "o")) && !(q[7] == "o" || q[7] == "x")) {
+        idDiv = "q7";
+    } else if (((q[7] == q[9] && q[7] == "o") || (q[2] == q[5] && q[2] == "o")) && !(q[8] == "o" || q[8] == "x")) {
+        idDiv = "q8";
+    } else if (((q[3] == q[6] && q[3] == "o") || (q[1] == q[5] && q[1] == "o") || (q[7] == q[8] && q[7] == "o")) && !(q[9] == "o" || q[9] == "x")) {
         idDiv = "q9";
     } else {
         return 0;
