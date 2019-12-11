@@ -377,6 +377,10 @@ function jogadaBot(quadrado) {
                         document.getElementById("q8").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
+                    } else if ((q[1] == "o" && q[5] == "x" && q[9] == "x")) {
+                        document.getElementById("q3").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
                     } else {
                         var i;
                         for (i = 1; i <= 9; i++) {
