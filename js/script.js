@@ -422,6 +422,10 @@ function jogadaBot(quadrado) {
                         document.getElementById("q7").innerHTML = "o";
                         tipoSimbolo = 0;
                         numeroJogada++;
+                    } else if ((q[1] == "x" && q[2] == "o" && q[8] == "x" && q[5] == "o" && q[6] == "x") && !(q[9] == "x" || q[9] == "o")) {
+                        document.getElementById("q9").innerHTML = "o";
+                        tipoSimbolo = 0;
+                        numeroJogada++;
                     } else {
                         var i;
                         for (i = 1; i <= 9; i++) {
